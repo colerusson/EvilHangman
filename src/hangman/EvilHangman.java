@@ -26,7 +26,6 @@ public class EvilHangman {
             System.out.print("Enter guess: ");
             Scanner userGuess = new Scanner(System.in);
             char letterGuess = userGuess.next().charAt(0);
-            System.out.print("\n");
             if (game.getGuessedLetters().contains(letterGuess)) {
                 while (game.getGuessedLetters().contains(letterGuess)) {
                     System.out.println("Letter already guessed, try again: ");
@@ -43,6 +42,7 @@ public class EvilHangman {
             else {
                 System.out.println("Yes, there is " + wordAfter + " " + letterGuess);
             }
+            System.out.print("\n");
         }
     }
 

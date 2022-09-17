@@ -22,21 +22,22 @@ public class EvilHangmanGame implements IEvilHangmanGame {
             }
         }
         for (int i = 0; i < wordLength; ++i) {
-            currentLetters.setCharAt(i, '-');
+            currentLetters.append('-');
         }
     }
 
     @Override
     public Set<String> makeGuess(char guess) throws GuessAlreadyMadeException {
+        allSets.clear();
         guessedLetters.add(guess);
         for (String word : allWords) {
             StringBuilder key = new StringBuilder();
             for (int i = 0; i < word.length(); ++i) {
                 if (word.toLowerCase().charAt(i) == guess) {
-                    key.setCharAt(i, guess);
+                    key.append(guess);
                 }
                 else {
-                    key.setCharAt(i,'-');
+                    key.append('-');
                 }
             }
             if (allSets.containsKey(key.toString())) {
