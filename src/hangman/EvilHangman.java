@@ -26,14 +26,8 @@ public class EvilHangman {
             System.out.print("Enter guess: ");
             Scanner userGuess = new Scanner(System.in);
             String inputGuess = userGuess.next();
-            if (inputGuess.length() > 1) {
-                while (inputGuess.length() > 1) {
-                    System.out.print("Invalid input! Enter guess: ");
-                    inputGuess = userGuess.next();
-                }
-            }
-            if (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) {
-                while (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) {
+            if (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)) {
+                while (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)) {
                     System.out.print("Invalid input! Enter guess: ");
                     inputGuess = userGuess.next();
                 }
@@ -45,7 +39,7 @@ public class EvilHangman {
                     letterGuess = userGuess.next().charAt(0);
                 }
             }
-            int wordBefore = game.getLettersAdded();
+            int wordBefore = 0;
             game.makeGuess(Character.toLowerCase(letterGuess));
             int wordAfter = game.getLettersAdded();
             if (wordBefore == wordAfter) {

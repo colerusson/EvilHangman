@@ -35,13 +35,13 @@ public class EvilHangmanGame implements IEvilHangmanGame {
         allSets.clear();
         guessedLetters.add(guess);
         for (String word : allWords) {
-            StringBuilder key = new StringBuilder();
+            StringBuilder key = new StringBuilder(currentLetters);
             for (int i = 0; i < word.length(); ++i) {
                 if (word.toLowerCase().charAt(i) == guess) {
-                    key.append(guess);
-                }
+                    key.setCharAt(i, guess);
+                } // TODO: basically need to fix this so that key stays how it should and doesn't get reset to dashes
                 else {
-                    key.append('-');
+                    key.setCharAt(i, key.charAt(i));
                 }
             }
             if (allSets.containsKey(key.toString())) {
