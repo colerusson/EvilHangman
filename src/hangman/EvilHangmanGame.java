@@ -22,6 +22,9 @@ public class EvilHangmanGame implements IEvilHangmanGame {
                 allWords.add(word.toLowerCase());
             }
         }
+        if (allWords.size() == 0) {
+            throw new EmptyDictionaryException();
+        }
         for (int i = 0; i < wordLength; ++i) {
             currentLetters.append('-');
         }
@@ -29,8 +32,11 @@ public class EvilHangmanGame implements IEvilHangmanGame {
 
     @Override
     public Set<String> makeGuess(char guess) throws GuessAlreadyMadeException {
+        if (guessedLetters.contains(Character.toLowerCase(guess))) {
+            throw new GuessAlreadyMadeException();
+        }
         allSets.clear();
-        guessedLetters.add(guess);
+        guessedLetters.add(Character.toLowerCase(guess));
         for (String word : allWords) {
             StringBuilder key = new StringBuilder(currentLetters);
             for (int i = 0; i < word.length(); ++i) {
