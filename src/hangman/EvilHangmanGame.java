@@ -36,7 +36,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
             for (int i = 0; i < word.length(); ++i) {
                 if (word.toLowerCase().charAt(i) == guess) {
                     key.setCharAt(i, guess);
-                } // TODO: basically need to fix this so that key stays how it should and doesn't get reset to dashes
+                }
                 else {
                     key.setCharAt(i, key.charAt(i));
                 }
@@ -52,18 +52,35 @@ public class EvilHangmanGame implements IEvilHangmanGame {
         }
         int largestSet = 0;
         String finalKey = "";
-        ArrayList<String> sameSizes = new ArrayList<>();
         for (String name : allSets.keySet()) {
             if (allSets.get(name).size() > largestSet) {
                 largestSet = allSets.get(name).size();
                 finalKey = name.toLowerCase();
             }
             if (allSets.get(name).size() == largestSet) {
-                sameSizes.add(name);
+                int finalKeyCounter = 0;
+                int finalPosition = 0;
+                int nameCounter = 0;
+                int namePosition = 0;
+                for (int i = 0; i < finalKey.length(); ++i) {
+                    if (finalKey.charAt(i) == guess) {
+                        ++finalKeyCounter;
+                        finalPosition += i;
+                    }
+                    if (name.charAt(i) == guess) {
+                        ++nameCounter;
+                        namePosition += i;
+                    }
+                }
+                if (nameCounter < finalKeyCounter) {
+                    finalKey = name.toLowerCase();
+                }
+                else if (nameCounter == finalKeyCounter) {
+                    if (namePosition > finalPosition) {
+                        finalKey = name.toLowerCase();
+                    }
+                }
             }
-        }
-        if (sameSizes.size() > 0) {
-
         }
         allWords.clear();
         allWords = allSets.get(finalKey);
