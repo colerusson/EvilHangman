@@ -13,6 +13,9 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     int lettersAdded;
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
+        // TODO: need to handle exceptions here with try and catches
+        // TODO: handle wordLength of 0
+        // TODO: handle EmptyDictionary
         allWords.clear();
         guessedLetters.clear();
         Scanner scan = new Scanner(dictionary);
