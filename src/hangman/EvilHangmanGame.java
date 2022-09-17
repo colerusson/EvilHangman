@@ -13,9 +13,6 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     int lettersAdded;
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
-        // TODO: need to handle exceptions here with try and catches
-        // TODO: handle wordLength of 0
-        // TODO: handle EmptyDictionary
         allWords.clear();
         guessedLetters.clear();
         Scanner scan = new Scanner(dictionary);
@@ -55,14 +52,18 @@ public class EvilHangmanGame implements IEvilHangmanGame {
         }
         int largestSet = 0;
         String finalKey = "";
+        ArrayList<String> sameSizes = new ArrayList<>();
         for (String name : allSets.keySet()) {
             if (allSets.get(name).size() > largestSet) {
                 largestSet = allSets.get(name).size();
                 finalKey = name.toLowerCase();
             }
             if (allSets.get(name).size() == largestSet) {
-                // TODO: need implementation here to get the best set
+                sameSizes.add(name);
             }
+        }
+        if (sameSizes.size() > 0) {
+
         }
         allWords.clear();
         allWords = allSets.get(finalKey);

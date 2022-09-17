@@ -8,10 +8,12 @@ public class EvilHangman {
     public static void main(String[] args) throws EmptyDictionaryException, IOException, GuessAlreadyMadeException {
         String fileName = args[0];
         File fileInput = new File(fileName);
-        String inputWord = args[1];
+        int inputWord = Integer.parseInt(args[1]);
         EvilHangmanGame game = new EvilHangmanGame();
-        game.startGame(fileInput, inputWord.length());
+        game.startGame(fileInput, inputWord);
+
         int guesses = 10;
+        // int guesses = Integer.parseInt(args[2]);     /* this is for running it in command line */
 
         while (guesses > 0) {
             System.out.println("You have " + guesses + " guesses left");
