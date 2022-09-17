@@ -9,6 +9,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     SortedSet<Character> guessedLetters = new TreeSet<>();
     Map<String, Set<String>> allSets = new HashMap<>();
     StringBuilder currentLetters = new StringBuilder();
+    String finalWord;
     int lettersAdded;
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
@@ -69,6 +70,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
                 ++lettersAdded;
             }
         }
+        finalWord = allSets.get(finalKey).iterator().next();
 
         return allSets.get(finalKey);
     }
@@ -84,5 +86,19 @@ public class EvilHangmanGame implements IEvilHangmanGame {
 
     public int getLettersAdded() {
         return lettersAdded;
+    }
+
+    public String getFinalWord() {
+        return finalWord;
+    }
+
+    public int dashesLeft() {
+        int dashes = 0;
+        for (int i = 0; i < currentLetters.length(); ++i) {
+            if (currentLetters.charAt(i) == '-') {
+                ++dashes;
+            }
+        }
+        return dashes;
     }
 }

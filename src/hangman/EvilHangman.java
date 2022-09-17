@@ -25,10 +25,23 @@ public class EvilHangman {
             System.out.println(game.getCurrentLetters());
             System.out.print("Enter guess: ");
             Scanner userGuess = new Scanner(System.in);
-            char letterGuess = userGuess.next().charAt(0);
+            String inputGuess = userGuess.next();
+            if (inputGuess.length() > 1) {
+                while (inputGuess.length() > 1) {
+                    System.out.print("Invalid input! Enter guess: ");
+                    inputGuess = userGuess.next();
+                }
+            }
+            if (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) {
+                while (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) {
+                    System.out.print("Invalid input! Enter guess: ");
+                    inputGuess = userGuess.next();
+                }
+            }
+            char letterGuess = inputGuess.charAt(0);
             if (game.getGuessedLetters().contains(letterGuess)) {
                 while (game.getGuessedLetters().contains(letterGuess)) {
-                    System.out.println("Letter already guessed, try again: ");
+                    System.out.print("Guess already made! Enter guess: ");
                     letterGuess = userGuess.next().charAt(0);
                 }
             }
@@ -43,6 +56,13 @@ public class EvilHangman {
                 System.out.println("Yes, there is " + wordAfter + " " + letterGuess);
             }
             System.out.print("\n");
+        }
+        if (game.dashesLeft() > 0) {
+            System.out.println("Sorry, you lost!");
+            System.out.println("The word was: " + game.getFinalWord());
+        }
+        else {
+            System.out.print("You win! You guessed the word: " + game.getFinalWord());
         }
     }
 
