@@ -97,7 +97,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
                 ++lettersAdded;
             }
         }
-        finalWord = allSets.get(finalKey).iterator().next();
+        finalWord = allSets.get(finalKey).iterator().next(); // convert to list and then use random to pick a random index
 
         return allSets.get(finalKey);
     }

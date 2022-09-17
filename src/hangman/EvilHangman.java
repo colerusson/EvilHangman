@@ -12,8 +12,8 @@ public class EvilHangman {
         EvilHangmanGame game = new EvilHangmanGame();
         game.startGame(fileInput, inputWord);
 
-        int guesses = 10;
-        // int guesses = Integer.parseInt(args[2]);     /* this is for running it in command line */
+        // int guesses = 10;
+        int guesses = Integer.parseInt(args[2]);     /* this is for running it in command line */
 
         while (guesses > 0) {
             System.out.println("You have " + guesses + " guesses left");
@@ -52,6 +52,15 @@ public class EvilHangman {
                 System.out.println("Yes, there is " + wordAfter + " " + letterGuess);
             }
             System.out.print("\n");
+            int gameOver = 0;
+            for (int i = 0; i < game.getCurrentLetters().length(); ++i) {
+                if (game.getCurrentLetters().charAt(i) == '-') {
+                    ++gameOver;
+                }
+            }
+            if (gameOver == 0) {
+                break;
+            }
         }
         if (game.dashesLeft() > 0) {
             System.out.println("Sorry, you lost!");
