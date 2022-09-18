@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class EvilHangmanGame implements IEvilHangmanGame {
-    Set<String> allWords = new HashSet<>();
-    SortedSet<Character> guessedLetters = new TreeSet<>();
-    Map<String, Set<String>> allSets = new HashMap<>();
-    StringBuilder currentLetters = new StringBuilder();
-    String finalWord;
-    int lettersAdded;
+    private Set<String> allWords = new HashSet<>();
+    private SortedSet<Character> guessedLetters = new TreeSet<>();
+    private Map<String, Set<String>> allSets = new HashMap<>();
+    private StringBuilder currentLetters = new StringBuilder();
+    private String finalWord;
+    private int lettersAdded;
     @Override
     public void startGame(File dictionary, int wordLength) throws IOException, EmptyDictionaryException {
         allWords.clear();
@@ -97,7 +97,10 @@ public class EvilHangmanGame implements IEvilHangmanGame {
                 ++lettersAdded;
             }
         }
-        finalWord = allSets.get(finalKey).iterator().next(); // convert to list and then use random to pick a random index
+        String[] setArray = allSets.get(finalKey).toArray(new String[allSets.get(finalKey).size()]);
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(allSets.get(finalKey).size());
+        finalWord = setArray[randomNumber];
 
         return allSets.get(finalKey);
     }

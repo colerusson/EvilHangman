@@ -11,9 +11,7 @@ public class EvilHangman {
         int inputWord = Integer.parseInt(args[1]);
         EvilHangmanGame game = new EvilHangmanGame();
         game.startGame(fileInput, inputWord);
-
-        // int guesses = 10;
-        int guesses = Integer.parseInt(args[2]);     /* this is for running it in command line */
+        int guesses = Integer.parseInt(args[2]);
 
         while (guesses > 0) {
             System.out.println("You have " + guesses + " guesses left");
