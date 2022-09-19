@@ -26,17 +26,15 @@ public class EvilHangman {
             System.out.print("Enter guess: ");
             Scanner userGuess = new Scanner(System.in);
             String inputGuess = userGuess.next();
-            if (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)) {
-                while (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)) {
-                    System.out.print("Invalid input! Enter guess: ");
+             char letterGuess = inputGuess.charAt(0);
+            // TODO: Implement better checkers here so that the thrown exceptions are better handled
+            // maybe a while loop around the whole thing that calls separate functions and doesn't exit the while loop
+            // until they are all satisfied
+            if (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) || (game.getGuessedLetters().contains(letterGuess))) {
+                while (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122) || (game.getGuessedLetters().contains(letterGuess))) {
+                    System.out.print("Invalid input/Guess already made! Enter guess: ");
                     inputGuess = userGuess.next();
-                }
-            }
-            char letterGuess = inputGuess.charAt(0);
-            if (game.getGuessedLetters().contains(letterGuess)) {
-                while (game.getGuessedLetters().contains(letterGuess)) {
-                    System.out.print("Guess already made! Enter guess: ");
-                    letterGuess = userGuess.next().charAt(0);
+                    letterGuess = inputGuess.charAt(0); 
                 }
             }
             int wordBefore = 0;
