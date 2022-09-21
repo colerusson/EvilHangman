@@ -26,14 +26,14 @@ public class EvilHangman {
             System.out.print("Enter guess: ");
             Scanner userGuess = new Scanner(System.in);
             String inputGuess = userGuess.next();
-            char letterGuess = inputGuess.charAt(0);
+            char letterGuess = inputGuess.toLowerCase().charAt(0);
             if (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)
                     || (game.getGuessedLetters().contains(letterGuess))) {
                 while (inputGuess.length() > 1 || (inputGuess.toLowerCase().charAt(0) < 97 || inputGuess.toLowerCase().charAt(0) > 122)
                         || (game.getGuessedLetters().contains(letterGuess))) {
                     System.out.print("Invalid input/Guess already made! Enter guess: ");
                     inputGuess = userGuess.next();
-                    letterGuess = inputGuess.charAt(0); 
+                    letterGuess = inputGuess.toLowerCase().charAt(0);
                 }
             }
             int wordBefore = 0;
